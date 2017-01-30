@@ -7,7 +7,7 @@ global $banco;
 $config = array();
 
 if (ENVIRONMENT == "development") {
-	$config['dbname'] = 'mebrepresentacoes';
+	$config['dbname'] = 'cantina';
 	$config['host'] = 'localhost';
         $config['charset'] = 'utf8';
 	$config['dbuser'] = 'root';

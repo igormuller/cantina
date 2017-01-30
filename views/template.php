@@ -22,15 +22,15 @@
                     <ul class="nav navbar-nav">
                         <li><a href="#">Caixa</a></li>
                         <li><a href="#">Acompanhamento</a></li>
-                        <li><a href="#">Saída</a></li>
-                        <li><a href="#">Produto</a></li>
+                        <li><a href="<?php echo BASE_URL ?>/saida/">Saída</a></li>
+                        <li><a href="<?php echo BASE_URL ?>/produto/">Produto</a></li>
                     </ul>
                 </div>                
         </nav>
         <div class="container">
-            <div class="row">
-                <?php $this->loadViewInTemplate($viewName, $viewData); ?>
-            </div>
+            <?php $this->loadViewInTemplate($viewName, $viewData); ?>
         </div>
+        <script type="text/javascript" src="<?php echo BASE_URL; ?>/assets/js/jquery.mask.js"></script>
+        <script type="text/javascript" src="<?php echo BASE_URL; ?>/assets/js/script.js"></script>
     </body>
 </html>
