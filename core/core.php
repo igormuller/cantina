@@ -2,15 +2,13 @@
 class Core{
     public function run(){
         
-        $url = '/'.(isset($_GET['q']))?$_GET['q']:"";
-        //$url = explode("index.php", $_SERVER['PHP_SELF']);
-        //$url = end($url);
+        $url = (isset($_GET['q']))?"/".$_GET['q']:"";
         $params = array();
         
-        if (!empty($url)) {
+        if (!empty($url) && $url != '/') {
 
             $url = explode('/', $url);           
-            //array_shift($url);
+            array_shift($url);
             if ($url[count($url)-1] == ""){
                 array_pop($url);
             }

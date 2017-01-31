@@ -5,7 +5,7 @@
             <div class="form-group">
                 <label class="control-label col-md-2">Data da Saída:</label>
                 <div class="col-md-5">
-                    <input type="date" class="form-control" name="dt_saida" id="data" required />
+                    <input type="text" class="form-control" name="dt_saida" id="data" required />
                 </div>
             </div>
             <div class="form-group">

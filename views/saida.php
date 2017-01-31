@@ -23,7 +23,10 @@
                     <td><?php echo "R$ ".str_replace('.', ',', $saida['valor']).(strstr($saida['valor'],'.')?"":",00"); ?></td>
                     <td><?php echo $saida['descricao']; ?></td>
                     <td><?php echo $saida['responsavel']; ?></td>
-                    <td></td>
+                    <td>
+                        <a href="<?php echo BASE_URL; ?>/saida/excluir/<?php echo $saida['id']; ?>" class="btn btn-sm btn-danger">Excluir</a>
+                        <a href="<?php echo BASE_URL; ?>/saida/editar/<?php echo $saida['id']; ?>" class="btn btn-sm btn-success">Editar</a>
+                    </td>
                 </tr>
                 <?php endforeach; ?>
                 

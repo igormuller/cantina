@@ -23,8 +23,8 @@ class produtoController extends controller {
             $descricao = addslashes($_POST['descricao']);
             
             $produto = new Produto();
-            $produto->add($nome, $preco, $descricao);
-            $dados['info'] = "Produto incluído com sucesso!";
+            $produto->add($nome, $preco_venda, $preco_custo, $descricao);
+            header("Location: ".BASE_URL."/produto");
         }
         $this->loadTemplate('produtoAdd', $dados);
     }

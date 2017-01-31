@@ -34,32 +34,35 @@ class saidaController extends controller {
     
     public function excluir($id) {
         if (!empty($id)) {
-            $produto = new Produto();
-            $produto->remove($id);
+            $saida = new Saida();
+            $saida->remover($id);
         }
-        header("Location: ".BASE_URL."/produto");
+        header("Location: ".BASE_URL."/saida");
     }
     
     public function editar($id) {
         $dados = array(
-            'produto' => array()
+            'saida' => array()
         );
         $id = addslashes($id);
-        $produto = new Produto();
-        $dados['produto'] = $produto->getProduto($id);
+        $saida = new Saida();
+        $dados['saida'] = $saida->getSaida($id);
         
-        if (isset($_POST['nome']) && !empty($_POST['nome'])) {
-            $nome = addslashes($_POST['nome']);
-            $preco_venda = str_replace(',','.',addslashes($_POST['preco_venda']));
-            $preco_custo = str_replace(',','.',addslashes($_POST['preco_custo']));
+        if (isset($_POST['dt_saida']) && !empty($_POST['dt_saida'])) {
+            $dt_saida = new DateTime();
+            $dt_saida = DateTime::createFromFormat("d/m/Y", $_POST['dt_saida']);
+            $dt_saida = $dt_saida->format("Y-m-d");
+            $valor = str_replace(',','.',addslashes($_POST['valor']));
             $descricao = addslashes($_POST['descricao']);
+            $responsavel = addslashes($_POST['responsavel']);
             
-            $produto = new Produto();
-            $produto->edit($nome, $preco_venda, $preco_custo, $descricao, $id);
-            header("Location: ".BASE_URL."/produto");
+            $saida = new Saida();
+            $saida->editar($dt_saida, $valor, $descricao, $responsavel, $id);
+            
+            header("Location: ".BASE_URL."/saida");
         }
         
-        $this->loadTemplate('produtoEditar', $dados);
+        $this->loadTemplate('saidaEditar', $dados);
     }
     
 }
