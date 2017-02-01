@@ -20,8 +20,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Caixa</a></li>
-                        <li><a href="#">Acompanhamento</a></li>
+                        <li><a href="<?php echo BASE_URL; ?>/caixa/">Caixa</a></li>
                         <li><a href="<?php echo BASE_URL ?>/saida/">Saída</a></li>
                         <li><a href="<?php echo BASE_URL ?>/produto/">Produto</a></li>
                     </ul>
