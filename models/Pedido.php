@@ -52,17 +52,28 @@ class Pedido extends model {
         $this->db->query($sql);
     }
     
+    public function getQtdeProduto($id) {
+        $qtde = 0;
+        $sql = "SELECT * FROM pedido_produto WHERE id = '$id'";
+        $sql = $this->db->query($sql);
+        if ($sql->rowCount() > 0) {
+            $array = $sql->fetch();
+            $qtde = $array['qtde'];
+        }
+        return $qtde;
+    }
+    
     public function excluirProdutoPedido($id_pedido, $id_produto, $id) {
-        $sql = "DELETE FROM pedido_produto WHERE id = '$id'";
-        $this->db->query($sql);
         $produto = new Produto();
         $produto = $produto->getProduto($id_produto);
-        $pedido = new Pedido();
-        $pedido = $pedido->getPedido($id_pedido);
+        $pedido = $this->getPedido($id_pedido);
+        $qtde = $this->getQtdeProduto($id);
         $total = $pedido['valor_total'];
+        $total = $total - ($produto['preco_venda'] * $qtde );
+        $sql = "UPDATE pedido SET valor_total = '$total' WHERE id = '$id_pedido'";
+        $this->db->query($sql);
         
-        $total = $total - ($produto['preco_venda'] * $qtde);
-        $sql = "UPDATE pedido SET valor_total = $total WHERE id = '$id'";
+        $sql = "DELETE FROM pedido_produto WHERE id = '$id'";
         $this->db->query($sql);
     }
 }

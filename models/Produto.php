@@ -5,7 +5,7 @@ class Produto extends model {
     private $produto;
     
     public function add($nome, $preco_venda, $preco_custo, $descricao) {
-        $sql = "INSERT INTO produto SET nome = '$nome', preco_venda = '$preco_venda', preco_custo = '$preco_custo', status = '1' descricao = '$descricao'";
+        $sql = "INSERT INTO produto SET nome = '$nome', preco_venda = '$preco_venda', preco_custo = '$preco_custo', status = '1', descricao = '$descricao'";
         $this->db->query($sql);        
     }
     
