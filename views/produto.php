@@ -18,7 +18,11 @@
             </thead>
             <tbody>
                 <?php foreach ($produtos as $produto): ?>
+                <?php if ($produto['status'] == '1'): ?>
                 <tr>
+                <?php else: ?>
+                <tr class="danger">
+                <?php endif; ?>
                     <td><?php echo $produto['nome']; ?></td>
                     <td><?php echo "R$ ".str_replace('.', ',', $produto['preco_venda']).(strstr($produto['preco_venda'],'.')?"":",00"); ?></td>
                     <td><?php echo (isset($produto['preco_custo'])?"R$ ".str_replace('.', ',', $produto['preco_custo']).(strstr($produto['preco_custo'],'.')?"":",00"):"-"); ?></td>

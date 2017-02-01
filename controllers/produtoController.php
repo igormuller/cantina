@@ -50,9 +50,10 @@ class produtoController extends controller {
             $preco_venda = str_replace(',','.',addslashes($_POST['preco_venda']));
             $preco_custo = str_replace(',','.',addslashes($_POST['preco_custo']));
             $descricao = addslashes($_POST['descricao']);
+            $status = addslashes($_POST['ativo']);
             
             $produto = new Produto();
-            $produto->edit($nome, $preco_venda, $preco_custo, $descricao, $id);
+            $produto->edit($nome, $preco_venda, $preco_custo, $status, $descricao, $id);
             header("Location: ".BASE_URL."/produto");
         }
         

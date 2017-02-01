@@ -27,6 +27,15 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="control-label col-md-2">Status:</label>
+                <div class="col-md-5">
+                    <select class="form-control" name="ativo">
+                        <option value="1" <?php echo ($produto['status'] == '1')? "selected" : ""; ?>>Ativo</option>
+                        <option value="2" <?php echo ($produto['status'] == '2')? "selected" : ""; ?>>Inativo</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
                 <div class="col-md-2"></div>
                 <div class="col-md-5">
                     <input type="submit" class="btn btn-success" value="Enviar" />
