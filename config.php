@@ -15,11 +15,11 @@ if (ENVIRONMENT == "development") {
         
         define("BASE_URL","http://localhost/cantina");
 } else {
-	$config['dbname'] = 'cantina';
+	$config['dbname'] = 'u437840495_canti';
 	$config['host'] = 'localhost';
         $config['charset'] = 'utf8';
-	$config['dbuser'] = 'u594870613_meb';
-	$config['dbpass'] = '1a2b3cMeb';
+	$config['dbuser'] = 'u437840495_admin';
+	$config['dbpass'] = '1a2b3cCantina';
         
         define("BASE_URL","http://cantina.mangiarepizza.com.br");
 }

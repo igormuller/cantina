@@ -3,7 +3,12 @@ class pedidoController extends controller {
     
     public function __construct() {
         parent::__construct();
+        $u = new Usuario();
+        if (!$u->isLogged()){
+            header("Location: ".BASE_URL."/login");
+        }
     }
+    
     public function index() {
         $dados = array(
             'pedidos' => array()
@@ -59,7 +64,25 @@ class pedidoController extends controller {
     }
     
     public function finalizar($id_pedido) {
-        $dados = array();
+        $dados = array(
+            'pedido' => array(),
+        );
+        $pedido = new Pedido();
+        $dados['pedido'] = $pedido->getPedido($id_pedido);
+        if ((isset($_POST['dinheiro']) && !empty($_POST['dinheiro'])) || (isset($_POST['debito']) && !empty($_POST['debito'])) || (isset($_POST['credito']) && !empty($_POST['credito']))) {
+            $dinheiro = addslashes($_POST['dinheiro']);
+            $debito = addslashes($_POST['debito']);
+            $credito = addslashes($_POST['credito']);
+            $soma = $dinheiro + $debito + $credito;
+            if ($soma == $dados['pedido']['valor_total']){
+                $pedido->finaliza($id_pedido);
+                header("Location: ".BASE_URL."/pedido");
+            } else {
+                $dados['aviso'] = "A soma dos pagamentos deve ser igual ao valor total do pedido (R$ ".$dados['pedido']['valor_total'].")";
+            }
+            
+            
+        }
         $this->loadTemplate('finalizarPedido', $dados);
     }
     

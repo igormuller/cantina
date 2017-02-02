@@ -76,4 +76,9 @@ class Pedido extends model {
         $sql = "DELETE FROM pedido_produto WHERE id = '$id'";
         $this->db->query($sql);
     }
+    
+    public function finaliza($id_pedido) {
+        $sql = "UPDATE pedido SET status = '2' WHERE id = '$id_pedido'";
+        $this->db->query($sql);
+    }
 }

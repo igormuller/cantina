@@ -1,5 +1,6 @@
 <html>
     <head>
+        <meta charset="UTF-8"> 
         <title>.: Cantina :.</title>
         <link href="<?php echo BASE_URL; ?>/assets/css/bootstrap.min.css" rel="stylesheet"/>
         <script type="text/javascript" src="<?php echo BASE_URL; ?>/assets/js/jquery-3.1.1.min.js"></script>
@@ -8,7 +9,7 @@
     </head>
     <body>
         <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
-            <div class="conteiner">
+            <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
@@ -25,7 +26,12 @@
                         <li><a href="<?php echo BASE_URL; ?>/saida/">Saída</a></li>
                         <li><a href="<?php echo BASE_URL; ?>/produto/">Produto</a></li>
                     </ul>
-                </div>                
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="<?php echo BASE_URL; ?>/login/logout">Sair</a></li>
+                    </ul>
+                        
+                    </ul>
+                </div>   
         </nav>
         <div class="container">
             <?php $this->loadViewInTemplate($viewName, $viewData); ?>
