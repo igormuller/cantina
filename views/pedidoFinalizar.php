@@ -31,7 +31,7 @@
                     </div>
                     <hr>
                     <div class="form-group text-center">
-                        <b>Pedido: <?php echo (isset($pedido['valor_total'])?"R$ ".str_replace('.', ',', $pedido['valor_total']).(strstr($pedido['valor_total'],'.')?"":",00"):"-"); ?></b>
+                        <b>Pedido: <?php echo "R$ ".number_format($pedido['valor_total'],',','.'); ?></b>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-12">

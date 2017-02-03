@@ -42,9 +42,13 @@ class Produto extends model {
         $sql = "UPDATE produto SET nome = '$nome', preco_venda = '$preco_venda', preco_custo = '$preco_custo', status = '$status', descricao = '$descricao' WHERE id = '$id'";
         $this->db->query($sql);
     }
+    
+    public function editStatus($id, $status) {
+        $sql = "UPDATE produto SET status = '$status' WHERE id = '$id'";
+        $this->db->query($sql);
+    }
 
-
-    public function getProduto($id) {
+        public function getProduto($id) {
         $array = array();
         $sql = "SELECT * FROM produto WHERE id = '$id'";
         $sql = $this->db->query($sql);
@@ -78,5 +82,15 @@ class Produto extends model {
         }
         
         return $array;
+    }
+    
+    public function produtoUsado($id) {
+        $sql = "SELECT * FROM pedido_produto WHERE id_produto = '$id'";
+        $sql = $this->db->query($sql);
+        
+        if ($sql->rowCount() > 0) {
+            return TRUE;
+        }
+        return FALSE;
     }
 }

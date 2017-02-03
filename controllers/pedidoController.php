@@ -13,6 +13,15 @@ class pedidoController extends controller {
         $dados = array(
             'pedidos' => array()
         );
+               
+        $caixa = new Caixa();
+        date_default_timezone_set('America/Sao_Paulo');
+        $data = date('Y-m-d');
+        //Verifica se existe Caixa aberto, se não tiver redireciona para abertura
+        if (!$caixa->caixaAberto($data)) {
+            header("Location: ".BASE_URL."/caixa/abrirCaixa");
+        }
+        
         $pedido = new Pedido();
         $dados['pedidos'] = $pedido->getPedidosAbertos();
         $this->loadTemplate('pedido', $dados);
@@ -32,10 +41,12 @@ class pedidoController extends controller {
     
     public function ver($id_pedido) {
         $dados = array(
-            'id_pedido' => $id_pedido
+            'pedido' => array()
         );
         $produto = new Produto();
         $dados['produtos'] = $produto->getProdutosPedido($id_pedido);
+        $pedido = new Pedido();
+        $dados['pedido'] = $pedido->getPedido($id_pedido);
         
         $this->loadTemplate('pedidoVer', $dados);
     }
@@ -83,7 +94,7 @@ class pedidoController extends controller {
             
             
         }
-        $this->loadTemplate('finalizarPedido', $dados);
+        $this->loadTemplate('pedidoFinalizar', $dados);
     }
     
 }

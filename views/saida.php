@@ -19,8 +19,8 @@
             <tbody>
                 <?php foreach ($saidas as $saida): ?>
                 <tr>
-                    <td><?php echo $saida['dt_saida']; ?></td>
-                    <td><?php echo "R$ ".str_replace('.', ',', $saida['valor']).(strstr($saida['valor'],'.')?"":",00"); ?></td>
+                    <td><?php echo date('d/m/Y',strtotime($saida['dt_saida'])); ?></td>
+                    <td><?php echo "R$ ".number_format($saida['valor'],2,',','.'); ?></td>
                     <td><?php echo $saida['descricao']; ?></td>
                     <td><?php echo $saida['responsavel']; ?></td>
                     <td>

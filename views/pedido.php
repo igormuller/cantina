@@ -34,7 +34,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="panel-footer"><b>Total: <?php echo (isset($pedido['valor_total'])?"R$ ".str_replace('.', ',', $pedido['valor_total']).(strstr($pedido['valor_total'],'.')?"":",00"):"-"); ?></b></div>
+                <div class="panel-footer"><b>Total: <?php echo "R$ ".number_format($pedido['valor_total'],2,',','.'); ?></b></div>
             </div>
         </a>
     </div>

@@ -43,24 +43,30 @@ class produtoController extends controller {
     
     public function editar($id) {
         $dados = array(
-            'produto' => array()
+            'produto' => array(),
+            'produto_usado' => FALSE
         );
         $id = addslashes($id);
         $produto = new Produto();
         $dados['produto'] = $produto->getProduto($id);
+        $dados['produto_usado'] = $produto->produtoUsado($id);
         
-        if (isset($_POST['nome']) && !empty($_POST['nome'])) {
-            $nome = addslashes($_POST['nome']);
-            $preco_venda = str_replace(',','.',addslashes($_POST['preco_venda']));
-            $preco_custo = str_replace(',','.',addslashes($_POST['preco_custo']));
-            $descricao = addslashes($_POST['descricao']);
-            $status = addslashes($_POST['ativo']);
-            
+        if (isset($_POST['ativo']) && !empty($_POST['ativo'])) {
             $produto = new Produto();
-            $produto->edit($nome, $preco_venda, $preco_custo, $status, $descricao, $id);
-            header("Location: ".BASE_URL."/produto");
+            if ($dados['produto_usado']) {
+                $status = addslashes($_POST['ativo']);
+                $produto->editStatus($id, $status);
+                header("Location: ".BASE_URL."/produto");
+            } else {
+                $nome = addslashes($_POST['nome']);
+                $preco_venda = str_replace(',','.',addslashes($_POST['preco_venda']));
+                $preco_custo = str_replace(',','.',addslashes($_POST['preco_custo']));
+                $descricao = addslashes($_POST['descricao']);
+                $status = addslashes($_POST['ativo']);
+                $produto->edit($nome, $preco_venda, $preco_custo, $status, $descricao, $id);
+                header("Location: ".BASE_URL."/produto");
+            }            
         }
-        
         $this->loadTemplate('produtoEditar', $dados);
     }
     

@@ -5,25 +5,25 @@
             <div class="form-group">
                 <label class="control-label col-md-2">Nome:</label>
                 <div class="col-md-5">
-                    <input type="text" class="form-control" name="nome" value="<?php echo $produto['nome']; ?>" required />
+                    <input type="text" class="form-control" name="nome" value="<?php echo $produto['nome']; ?>" <?php echo $produto_usado? "disabled" : "required" ?> />
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-md-2">Preço Venda:</label>
                 <div class="col-md-5">
-                    <input type="text" class="form-control" name="preco_venda" value="<?php echo $produto['preco_venda']; ?>" required />
+                    <input type="text" class="form-control" name="preco_venda" value="<?php echo $produto['preco_venda']; ?>" <?php echo $produto_usado? "disabled" : "required" ?> />
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-md-2">Preço Custo:</label>
                 <div class="col-md-5">
-                    <input type="text" class="form-control" name="preco_custo" value="<?php echo $produto['preco_custo']; ?>" required />
+                    <input type="text" class="form-control" name="preco_custo" value="<?php echo $produto['preco_custo']; ?>" <?php echo $produto_usado? "disabled" : "required" ?> />
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-md-2">Descrição:</label>
                 <div class="col-md-5">
-                    <textarea class="form-control" rows="4" name="descricao"><?php echo $produto['descricao']; ?></textarea>
+                    <textarea class="form-control" rows="4" name="descricao" <?php echo $produto_usado? "disabled" : "" ?>><?php echo $produto['descricao']; ?></textarea>
                 </div>
             </div>
             <div class="form-group">
