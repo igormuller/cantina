@@ -34,11 +34,22 @@ class produtoController extends controller {
     }
     
     public function excluir($id) {
+        $dados = array(
+            'produtos' => array(),
+            'aviso' => ''
+        );
+        $dados['produtos'] = $produto->getProdutos();
         if (!empty($id)) {
             $produto = new Produto();
-            $produto->remove($id);
+            if (!$produto->produtoUsado($id)){
+                $produto->remove($id);
+            } else {
+                $dados['aviso'] = "Produto ".$produto['nome']." já usado, não podendo ser excluído!";
+            }        
         }
-        header("Location: ".BASE_URL."/produto");
+        
+        
+        $this->loadTemplate('produto', $dados);
     }
     
     public function editar($id) {

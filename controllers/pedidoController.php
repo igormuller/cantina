@@ -81,19 +81,19 @@ class pedidoController extends controller {
         $pedido = new Pedido();
         $dados['pedido'] = $pedido->getPedido($id_pedido);
         if ((isset($_POST['dinheiro']) && !empty($_POST['dinheiro'])) || (isset($_POST['debito']) && !empty($_POST['debito'])) || (isset($_POST['credito']) && !empty($_POST['credito']))) {
-            $dinheiro = addslashes($_POST['dinheiro']);
-            $debito = addslashes($_POST['debito']);
-            $credito = addslashes($_POST['credito']);
+            $dinheiro = str_replace(',','.',addslashes($_POST['dinheiro']));
+            $debito = str_replace(',','.',addslashes($_POST['debito']));
+            $credito = str_replace(',','.',addslashes($_POST['credito']));
             $soma = $dinheiro + $debito + $credito;
             if ($soma == $dados['pedido']['valor_total']){
                 if ($dinheiro > '0') {
-                    $pedido->inserirPagamento($id_pedido, '1', str_replace(',','.',$dinheiro));
+                    $pedido->inserirPagamento($id_pedido, '1', $dinheiro);
                 }
                 if ($debito > '0') {
-                    $pedido->inserirPagamento($id_pedido, '2', str_replace(',','.',$debito));
+                    $pedido->inserirPagamento($id_pedido, '2', $debito);
                 }
                 if ($credito > '0') {
-                    $pedido->inserirPagamento($id_pedido, '3', str_replace(',','.',$credito));
+                    $pedido->inserirPagamento($id_pedido, '3', $credito);
                 }
                 
                 

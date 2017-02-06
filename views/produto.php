@@ -1,3 +1,13 @@
+<?php if (!empty($aviso)): ?>
+<div class="row">
+    <div class="col-md-12">
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Atenção!</strong> <?php echo $aviso; ?>.
+        </div>
+    </div>
+</div>
+<?php endif; ?>
 <div class="row">
     <div class="col-md-12">
         <a href="<?php echo BASE_URL; ?>/produto/add" class="btn btn-success">Novo Produto</a>

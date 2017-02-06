@@ -4,25 +4,25 @@
         <div class="form-group">
             <label class="control-label col-md-2">Nome:</label>
             <div class="col-md-5">
-                <input type="text" class="form-control" name="nome" required />
+                <input type="text" class="form-control" name="nome" placeholder="Nome do produto" required />
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-2">Preço Venda:</label>
             <div class="col-md-5">
-                <input type="text" class="form-control" name="preco_venda" required />
+                <input type="text" class="form-control" name="preco_venda" placeholder="0,00" required />
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-2">Preço Custo:</label>
             <div class="col-md-5">
-                <input type="text" class="form-control" name="preco_custo" />
+                <input type="text" class="form-control" placeholder="0,00" name="preco_custo" />
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-2">Descrição:</label>
             <div class="col-md-5">
-                <textarea class="form-control" rows="4" name="descricao"></textarea>
+                <textarea class="form-control" rows="4" placeholder="Descrição do produto" name="descricao"></textarea>
             </div>
         </div>
         <div class="form-group">

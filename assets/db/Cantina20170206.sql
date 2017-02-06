@@ -32,7 +32,7 @@ CREATE TABLE `caixa` (
   `observacao` text,
   `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,6 @@ CREATE TABLE `caixa` (
 
 LOCK TABLES `caixa` WRITE;
 /*!40000 ALTER TABLE `caixa` DISABLE KEYS */;
-INSERT INTO `caixa` VALUES (1,120,'2017-02-03',NULL,NULL,NULL,NULL,0);
 /*!40000 ALTER TABLE `caixa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -79,9 +78,9 @@ DROP TABLE IF EXISTS `pagamento`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pagamento` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(30) NOT NULL,
+  `tipo` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,7 +89,6 @@ CREATE TABLE `pagamento` (
 
 LOCK TABLES `pagamento` WRITE;
 /*!40000 ALTER TABLE `pagamento` DISABLE KEYS */;
-INSERT INTO `pagamento` VALUES (1,'Dinheiro'),(2,'Débito'),(3,'Crédito'),(4,'Fiado');
 /*!40000 ALTER TABLE `pagamento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -107,9 +105,9 @@ CREATE TABLE `pedido` (
   `dt_pedido` date DEFAULT NULL,
   `valor_total` double DEFAULT NULL,
   `status` int(11) NOT NULL,
-  `pagamento` varchar(10) DEFAULT NULL,
+  `dt_fechado` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,8 +116,32 @@ CREATE TABLE `pedido` (
 
 LOCK TABLES `pedido` WRITE;
 /*!40000 ALTER TABLE `pedido` DISABLE KEYS */;
-INSERT INTO `pedido` VALUES (1,'Igor','2017-02-03',90,1,NULL);
 /*!40000 ALTER TABLE `pedido` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `pedido_pagamento`
+--
+
+DROP TABLE IF EXISTS `pedido_pagamento`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pedido_pagamento` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_pedido` int(11) NOT NULL,
+  `id_pagamento` int(11) NOT NULL,
+  `valor` double NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pedido_pagamento`
+--
+
+LOCK TABLES `pedido_pagamento` WRITE;
+/*!40000 ALTER TABLE `pedido_pagamento` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pedido_pagamento` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -135,7 +157,7 @@ CREATE TABLE `pedido_produto` (
   `id_produto` int(11) NOT NULL,
   `qtde` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,7 +166,6 @@ CREATE TABLE `pedido_produto` (
 
 LOCK TABLES `pedido_produto` WRITE;
 /*!40000 ALTER TABLE `pedido_produto` DISABLE KEYS */;
-INSERT INTO `pedido_produto` VALUES (2,1,1,8),(3,1,4,2),(4,1,3,5);
 /*!40000 ALTER TABLE `pedido_produto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -163,7 +184,7 @@ CREATE TABLE `produto` (
   `status` tinyint(4) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -172,7 +193,6 @@ CREATE TABLE `produto` (
 
 LOCK TABLES `produto` WRITE;
 /*!40000 ALTER TABLE `produto` DISABLE KEYS */;
-INSERT INTO `produto` VALUES (1,'Pizza',5,2,1,'Calabresa'),(2,'Crepe',7,2,1,'Calabresa/Queijo, Presunto/Queijo, Queijo, Chocolate'),(3,'Refri Coca-Cola',4,2,1,''),(4,'Batata-Frita',15,2.5,1,'PorÃ§Ã£o de 500g'),(5,'Pastel',10,2.25,1,'Carne, Calabresa, Frango'),(6,'Suco',5.25,1.25,1,'Uva, Laranja, Abacaxi');
 /*!40000 ALTER TABLE `produto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -190,7 +210,7 @@ CREATE TABLE `saida` (
   `descricao` text NOT NULL,
   `responsavel` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -199,7 +219,6 @@ CREATE TABLE `saida` (
 
 LOCK TABLES `saida` WRITE;
 /*!40000 ALTER TABLE `saida` DISABLE KEYS */;
-INSERT INTO `saida` VALUES (1,'2017-01-21',15.25,'jhgj','bgh');
 /*!40000 ALTER TABLE `saida` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -238,4 +257,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-03 16:09:43
+-- Dump completed on 2017-02-06 15:57:12
