@@ -4,7 +4,9 @@
         <div class="panel panel-info">
             <div class="panel-heading">Pedido <?php echo $pedido['nome']; ?></div>
             <div class="panel-body">
-                <a href="<?php echo BASE_URL."/pedido/adicionarProduto/".$pedido['id']; ?>" class="btn btn-success">Adicionar Produto</a>
+                <?php if ($pedido['status'] == '1'): ?>
+                <a href="<?php echo BASE_URL."/pedido/pedidoAddProduto/".$pedido['id']; ?>" class="btn btn-success">Adicionar Produto</a>
+                <?php endif; ?>
                 <table class="table table-condensed">
                     <thead>
                         <tr>
@@ -27,7 +29,9 @@
                             ?>
                             <td><?php echo "R$ ".number_format($totalp,2,',','.'); ?></td>
                             <td>
+                                <?php if ($pedido['status'] == '1'): ?>
                                 <a href="<?php echo BASE_URL."/pedido/excluir/".$produto['id_pedido']."/".$produto['id_produto']."/".$produto['id']; ?>" class="btn btn-sm btn-danger">Excluir</a>
+                                <?php endif; ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -38,6 +42,8 @@
                 <b>Total: <?php echo "R$ ".  number_format($pedido['valor_total'],2,',','.'); ?></b>
             </div>
         </div>
-        <a href="<?php echo BASE_URL."/pedido/finalizar/".$id_pedido; ?>" class="btn btn-success">Finalizar Pedido</a>
+        <?php if ($pedido['status'] == '1' and $pedido['valor_total'] > 0): ?>
+        <a href="<?php echo BASE_URL."/pedido/finalizar/".$pedido['id']; ?>" class="btn btn-success">Finalizar Pedido</a>
+        <?php endif; ?>
     </div>
 </div>

@@ -51,7 +51,7 @@ class pedidoController extends controller {
         $this->loadTemplate('pedidoVer', $dados);
     }
     
-    public function adicionarProduto($id_pedido) {
+    public function pedidoAddProduto($id_pedido) {
         $dados = array();
         $produto = new Produto();
         $dados['produtos'] = $produto->getProdutosAtivos();
@@ -65,7 +65,7 @@ class pedidoController extends controller {
             header("Location: ".BASE_URL."/pedido/ver/".$id_pedido);
         }
         
-        $this->loadTemplate('adicionarProduto', $dados);
+        $this->loadTemplate('pedidoAddProduto', $dados);
     }
     
     public function excluir($id_pedido, $id_produto, $id) {
@@ -86,10 +86,32 @@ class pedidoController extends controller {
             $credito = addslashes($_POST['credito']);
             $soma = $dinheiro + $debito + $credito;
             if ($soma == $dados['pedido']['valor_total']){
-                $pedido->finaliza($id_pedido);
-                header("Location: ".BASE_URL."/pedido");
+                if ($dinheiro > '0') {
+                    $pedido->inserirPagamento($id_pedido, '1', str_replace(',','.',$dinheiro));
+                }
+                if ($debito > '0') {
+                    $pedido->inserirPagamento($id_pedido, '2', str_replace(',','.',$debito));
+                }
+                if ($credito > '0') {
+                    $pedido->inserirPagamento($id_pedido, '3', str_replace(',','.',$credito));
+                }
+                
+                
+                $caixa = new Caixa();
+                $id_caixa = $caixa->getCaixa($dados['pedido']['dt_pedido']);
+                if (!empty($id_caixa)) {
+                    $id_caixa = $id_caixa['id'];
+
+                    $pedido->finaliza($id_pedido);
+
+                    $caixa->incluirCaixaItem($id_caixa,'1', $id_pedido);
+                    header("Location: ".BASE_URL."/pedido");
+                } else {
+                    $dados['aviso'] = "Nenhum caixa aberto para a data do pedido, ".date('d/m/Y',strtotime($dados['pedido']['dt_pedido']));
+                }
+
             } else {
-                $dados['aviso'] = "A soma dos pagamentos deve ser igual ao valor total do pedido (R$ ".$dados['pedido']['valor_total'].")";
+                $dados['aviso'] = "A soma dos pagamentos deve ser igual ao valor total do pedido (R$ ".number_format($dados['pedido']['valor_total'],2,',','.').")";
             }
             
             

@@ -28,7 +28,9 @@ class saidaController extends controller {
     }
     
     public function add() {
-        $dados = array();
+        $dados = array(
+            'aviso' => ''
+        );
         if (isset($_POST['dt_saida']) && !empty($_POST['dt_saida'])) {
             $dt_saida = new DateTime();
             $dt_saida = DateTime::createFromFormat("d/m/Y", $_POST['dt_saida']);
@@ -37,14 +39,35 @@ class saidaController extends controller {
             $descricao = addslashes($_POST['descricao']);
             $responsavel = addslashes($_POST['responsavel']);
             
-            $saida = new Saida();
-            $saida->add($dt_saida, $valor, $descricao, $responsavel);
+            $caixa = new Caixa();
+            $id_caixa = $caixa->getCaixa($dt_saida);
+            if (!empty($id_caixa)) {
+                $id_caixa = $id_caixa['id'];
+                
+                $saida = new Saida();
+                $id_item = $saida->add($dt_saida, $valor, $descricao, $responsavel);
+                
+                $caixa->incluirCaixaItem($id_caixa,'2', $id_item);
+                header("Location: ".BASE_URL."/saida");
+            } else {
+                $dados['aviso'] = "Nenhum caixa aberto para a data da saida ".date('d/m/Y',strtotime($dt_saida));
+            }
             
-            header("Location: ".BASE_URL."/saida");
         }
         $this->loadTemplate('saidaAdd', $dados);
     }
     
+    public function ver($id) {
+        $dados = array(
+            'saida' => array()
+        );
+        $id = addslashes($id);
+        $saida = new Saida();
+        $dados['saida'] = $saida->getSaida($id);
+        $this->loadTemplate('saidaVer', $dados);
+    }
+
+
     public function excluir($id) {
         if (!empty($id)) {
             $saida = new Saida();

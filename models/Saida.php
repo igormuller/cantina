@@ -16,6 +16,7 @@ class Saida extends model {
     public function add($dt_saida, $valor, $descricao, $responsavel) {
         $sql = "INSERT INTO saida SET dt_saida = '$dt_saida', valor = '$valor', descricao = '$descricao', responsavel = '$responsavel'";      
         $this->db->query($sql);
+        return $this->db->lastInsertId();
     }
     
     public function remover($id) {

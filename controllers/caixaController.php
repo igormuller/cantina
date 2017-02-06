@@ -11,7 +11,8 @@ class caixaController extends controller {
     
     public function index() {
         $dados = array(
-            'caixa' => array()
+            'caixa' => array(),
+            'caixa_itens' => array()
         );
         $caixa = new Caixa();
         date_default_timezone_set('America/Sao_Paulo');
@@ -23,6 +24,7 @@ class caixaController extends controller {
         }
         
         $dados['caixa'] = $caixa->getCaixa($data);
+        $dados['caixa_itens'] = $caixa->getCaixaItem($dados['caixa']['id']);
         
         $this->loadTemplate('caixa', $dados);
     }

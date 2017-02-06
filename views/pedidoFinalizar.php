@@ -31,7 +31,7 @@
                     </div>
                     <hr>
                     <div class="form-group text-center">
-                        <b>Pedido: <?php echo "R$ ".number_format($pedido['valor_total'],',','.'); ?></b>
+                        <b>Pedido: <?php echo "R$ ".number_format($pedido['valor_total'],2,',','.'); ?></b>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-12">

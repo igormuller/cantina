@@ -78,7 +78,24 @@ class Pedido extends model {
     }
     
     public function finaliza($id_pedido) {
-        $sql = "UPDATE pedido SET status = '2' WHERE id = '$id_pedido'";
+        $sql = "UPDATE pedido SET status = '2', dt_fechado = NOW() WHERE id = '$id_pedido'";
         $this->db->query($sql);
+    }
+    
+    public function inserirPagamento($id_pedido, $id_pagamento, $valor) {
+        $sql = "INSERT INTO pedido_pagamento SET id_pedido = '$id_pedido', id_pagamento = '$id_pagamento', valor = '$valor'";
+        $this->db->query($sql);
+    }
+    
+    public function getValoresPedido($id_pedido){
+        $array = array();
+        $sql = "SELECT * FROM pedido_pagamento WHERE id_pedido = '$id_pedido'";
+        $sql = $this->db->query($sql);
+        
+        if ($sql->rowCount() > 0) {
+            $array = $sql->fetchAll();
+        }
+        
+        return $array;
     }
 }
