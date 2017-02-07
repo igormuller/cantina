@@ -8,7 +8,7 @@ class Pedido extends model {
          * Status Fechado = 2
          */
         $array = array();
-        $sql = "SELECT * FROM pedido WHERE status = '1'";
+        $sql = "SELECT * FROM pedido WHERE status = '1' ORDER BY nome";
         $sql = $this->db->query($sql);
         $produto = new Produto();
         if ($sql->rowCount() > 0) {

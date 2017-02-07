@@ -11,13 +11,13 @@
             <div class="form-group">
                 <label class="control-label col-md-2">Preço Venda:</label>
                 <div class="col-md-5">
-                    <input type="text" class="form-control" name="preco_venda" value="<?php echo $produto['preco_venda']; ?>" <?php echo $produto_usado? "disabled" : "required" ?> />
+                    <input type="text" class="form-control" name="preco_venda" value="<?php echo number_format($produto['preco_venda'],2,',','.'); ?>" <?php echo $produto_usado? "disabled" : "required" ?> />
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-md-2">Preço Custo:</label>
                 <div class="col-md-5">
-                    <input type="text" class="form-control" name="preco_custo" value="<?php echo $produto['preco_custo']; ?>" <?php echo $produto_usado? "disabled" : "required" ?> />
+                    <input type="text" class="form-control" name="preco_custo" value="<?php echo number_format($produto['preco_custo'],2,',','.'); ?>" <?php echo $produto_usado? "disabled" : "required" ?> />
                 </div>
             </div>
             <div class="form-group">

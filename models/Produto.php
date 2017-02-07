@@ -11,7 +11,7 @@ class Produto extends model {
     
     public function getProdutos() {
         $array = array();
-        $sql = "SELECT * FROM produto";
+        $sql = "SELECT * FROM produto ORDER BY nome";
         $sql = $this->db->query($sql);
         
         if ($sql->rowCount() > 0) {
@@ -23,7 +23,7 @@ class Produto extends model {
     
     public function getProdutosAtivos() {
         $array = array();
-        $sql = "SELECT * FROM produto WHERE status = '1'";
+        $sql = "SELECT * FROM produto WHERE status = '1' ORDER BY nome";
         $sql = $this->db->query($sql);
         
         if ($sql->rowCount() > 0) {
@@ -48,7 +48,7 @@ class Produto extends model {
         $this->db->query($sql);
     }
 
-        public function getProduto($id) {
+    public function getProduto($id) {
         $array = array();
         $sql = "SELECT * FROM produto WHERE id = '$id'";
         $sql = $this->db->query($sql);

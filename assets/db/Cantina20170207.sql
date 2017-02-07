@@ -80,7 +80,7 @@ CREATE TABLE `pagamento` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tipo` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -89,6 +89,7 @@ CREATE TABLE `pagamento` (
 
 LOCK TABLES `pagamento` WRITE;
 /*!40000 ALTER TABLE `pagamento` DISABLE KEYS */;
+INSERT INTO `pagamento` VALUES (1,'Dinheiro'),(2,'Débito'),(3,'Crédito');
 /*!40000 ALTER TABLE `pagamento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,7 +185,7 @@ CREATE TABLE `produto` (
   `status` tinyint(4) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -193,6 +194,7 @@ CREATE TABLE `produto` (
 
 LOCK TABLES `produto` WRITE;
 /*!40000 ALTER TABLE `produto` DISABLE KEYS */;
+INSERT INTO `produto` VALUES (1,'Batata-Frita',15,0,1,'PorÃ§Ã£o 500g'),(2,'Frango a Passarinho',35,0,1,'PorÃ§Ã£o 1Kg de frango a passarinho frito'),(3,'Pizza Calabresa',5,2,1,'Molho de Tomate, Queijo, Calabresa e OrÃ©gano'),(4,'Pizza Frango',5,2,1,'Molho de Tomate, Frango, Queijo e OrÃ©gano'),(5,'Pizza Bacon',5,2,1,'Molho de Tomate, Queijo,Bacon e OrÃ©gano'),(6,'Crepe Calabresa/Queijo',7,2,1,'Calabresa com Queijo'),(7,'Crepe Presunto/Queijo',7,2,1,'Presunto com Queijo'),(8,'Crepe Queijo',7,2,1,'Queijo'),(9,'Crepe Chocolate',7,2,1,'Chocolate preto'),(10,'Refri Coca-Cola',4,2,1,''),(11,'Refri GuaranÃ¡',4,1.6,1,''),(12,'Salada de Frutas',10,0,1,''),(13,'Cachorro-Quente',8,2,1,'Molho de Tomate, Milho, Ervilha, Salsicha, Batata Palha'),(14,'Pastel Calabresa',10,2,1,'Calabresa com Queijo'),(15,'Pastel Carne',10,2,1,'Carne, Queijo e Ovo'),(16,'Pastel Frango',10,2,1,'Frango e Queijo'),(17,'Suco Uva',5,2,1,'500ml'),(18,'Suco Laranja',5,2,1,'500ml'),(19,'Suco Abacaxi',5,2,1,'500ml');
 /*!40000 ALTER TABLE `produto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -257,4 +259,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-06 15:57:12
+-- Dump completed on 2017-02-07 16:14:48

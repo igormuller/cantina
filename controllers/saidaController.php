@@ -6,6 +6,14 @@ class saidaController extends controller {
         $u = new Usuario();
         if (!$u->isLogged()){
             header("Location: ".BASE_URL."/login");
+        } else {
+            $caixa = new Caixa();
+            date_default_timezone_set('America/Sao_Paulo');
+            $data = date('Y-m-d');
+            //Verifica se existe Caixa aberto, se não tiver redireciona para abertura
+            if (!$caixa->caixaAberto($data)) {
+                header("Location: ".BASE_URL."/caixa/abrir");
+            }
         }
     }
     
@@ -13,14 +21,6 @@ class saidaController extends controller {
         $dados = array(
             'saidas' => array()
         );
-        
-        $caixa = new Caixa();
-        date_default_timezone_set('America/Sao_Paulo');
-        $data = date('Y-m-d');
-        //Verifica se existe Caixa aberto, se não tiver redireciona para abertura
-        if (!$caixa->caixaAberto($data)) {
-            header("Location: ".BASE_URL."/caixa/abrirCaixa");
-        }
         
         $saida = new Saida();
         $dados['saidas'] = $saida->getSaidas();

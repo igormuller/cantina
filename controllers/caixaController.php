@@ -20,7 +20,7 @@ class caixaController extends controller {
         
         //Verifica se existe Caixa aberto, se não tiver redireciona para abertura
         if (!$caixa->caixaAberto($data)) {
-            header("Location: ".BASE_URL."/caixa/abrirCaixa");
+            header("Location: ".BASE_URL."/caixa/abrir");
         }
         
         $dados['caixa'] = $caixa->getCaixa($data);
@@ -29,7 +29,7 @@ class caixaController extends controller {
         $this->loadTemplate('caixa', $dados);
     }
     
-    public function abrirCaixa() {
+    public function abrir() {
         $dados = array();
         $caixa = new Caixa();
         date_default_timezone_set('America/Sao_Paulo');
@@ -50,7 +50,7 @@ class caixaController extends controller {
                 header("Location: ".BASE_URL."/caixa");
             }            
         }
-        $this->loadTemplate('abrirCaixa');
+        $this->loadTemplate('caixaAbrir');
     }
     
 }

@@ -30,7 +30,7 @@
                             <td><?php echo "R$ ".number_format($totalp,2,',','.'); ?></td>
                             <td>
                                 <?php if ($pedido['status'] == '1'): ?>
-                                <a href="<?php echo BASE_URL."/pedido/excluir/".$produto['id_pedido']."/".$produto['id_produto']."/".$produto['id']; ?>" class="btn btn-sm btn-danger">Excluir</a>
+                                <a href="<?php echo BASE_URL."/pedido/excluir/".$produto['id_pedido']."/".$produto['id_produto']."/".$produto['id']; ?>" class="btn btn-sm btn-danger" >Excluir</a>
                                 <?php endif; ?>
                             </td>
                         </tr>

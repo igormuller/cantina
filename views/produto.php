@@ -34,8 +34,8 @@
                 <tr class="danger">
                 <?php endif; ?>
                     <td><?php echo $produto['nome']; ?></td>
-                    <td><?php echo "R$ ".str_replace('.', ',', $produto['preco_venda']).(strstr($produto['preco_venda'],'.')?"":",00"); ?></td>
-                    <td><?php echo (isset($produto['preco_custo'])?"R$ ".str_replace('.', ',', $produto['preco_custo']).(strstr($produto['preco_custo'],'.')?"":",00"):"-"); ?></td>
+                    <td><?php echo "R$ ".number_format($produto['preco_venda'],2,',','.'); ?></td>
+                    <td><?php echo "R$ ".number_format($produto['preco_custo'],2,',','.'); ?></td>
                     <td><?php echo $produto['descricao']; ?></td>
                     <td>
                         <a href="<?php echo BASE_URL; ?>/produto/excluir/<?php echo $produto['id']; ?>" class="btn btn-sm btn-danger">Excluir</a>
