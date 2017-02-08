@@ -38,8 +38,12 @@
                     <td><?php echo "R$ ".number_format($produto['preco_custo'],2,',','.'); ?></td>
                     <td><?php echo $produto['descricao']; ?></td>
                     <td>
-                        <a href="<?php echo BASE_URL; ?>/produto/excluir/<?php echo $produto['id']; ?>" class="btn btn-sm btn-danger">Excluir</a>
-                        <a href="<?php echo BASE_URL; ?>/produto/editar/<?php echo $produto['id']; ?>" class="btn btn-sm btn-success">Editar</a>
+                        <a href="<?php echo BASE_URL; ?>/produto/excluir/<?php echo $produto['id']; ?>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir produto">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                        <a href="<?php echo BASE_URL; ?>/produto/editar/<?php echo $produto['id']; ?>" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Editar produto">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
                     </td>
                 </tr>
                 <?php endforeach; ?>

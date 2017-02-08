@@ -1,5 +1,7 @@
 $(function (){
+    
     $('#data').mask('00/00/0000');
+    $('[data-toggle="tooltip"]').tooltip();
     
     //Finalização do Pedido
     $('#dinheiro').bind('focusout', function (){

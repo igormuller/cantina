@@ -24,8 +24,8 @@
                     <td><?php echo $saida['descricao']; ?></td>
                     <td><?php echo $saida['responsavel']; ?></td>
                     <td>
-                        <a href="<?php echo BASE_URL; ?>/saida/excluir/<?php echo $saida['id']; ?>" class="btn btn-sm btn-danger">Excluir</a>
-                        <a href="<?php echo BASE_URL; ?>/saida/editar/<?php echo $saida['id']; ?>" class="btn btn-sm btn-success">Editar</a>
+                        <a href="<?php echo BASE_URL; ?>/saida/excluir/<?php echo $saida['id']; ?>" class="btn btn btn-danger" data-toggle="tooltip" data-placement="top" title="Excluir saída"><i class="glyphicon glyphicon-remove"></i></a>
+                        <a href="<?php echo BASE_URL; ?>/saida/editar/<?php echo $saida['id']; ?>" class="btn btn btn-success" data-toggle="tooltip" data-placement="top" title="Editar saída"><i class="glyphicon glyphicon-pencil"></i></a>
                     </td>
                 </tr>
                 <?php endforeach; ?>
