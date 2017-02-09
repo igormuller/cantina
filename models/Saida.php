@@ -25,7 +25,7 @@ class Saida extends model {
     }
     
     public function editar($dt_saida, $valor, $descricao, $responsavel,$id){
-        $sql = "UPDATE FROM saida SET dt_saida = '$dt_saida', valor = '$valor', descricao = '$descricao', responsavel = '$responsavel' WHERE id = '$id'";
+        $sql = "UPDATE saida SET dt_saida = '$dt_saida', valor = '$valor', descricao = '$descricao', responsavel = '$responsavel' WHERE id = '$id'";
         $sql = $this->db->query($sql);
     }
     

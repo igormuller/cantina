@@ -11,20 +11,10 @@ class caixaController extends controller {
     
     public function index() {
         $dados = array(
-            'caixa' => array(),
-            'caixa_itens' => array()
+            'caixas' => array()
         );
         $caixa = new Caixa();
-        date_default_timezone_set('America/Sao_Paulo');
-        $data = date('Y-m-d');
-        
-        //Verifica se existe Caixa aberto, se não tiver redireciona para abertura
-        if (!$caixa->caixaAberto($data)) {
-            header("Location: ".BASE_URL."/caixa/abrir");
-        }
-        
-        $dados['caixa'] = $caixa->getCaixa($data);
-        $dados['caixa_itens'] = $caixa->getCaixaItem($dados['caixa']['id']);
+        $dados['caixas'] = $caixa->getCaixas();
         
         $this->loadTemplate('caixa', $dados);
     }
@@ -51,6 +41,19 @@ class caixaController extends controller {
             }            
         }
         $this->loadTemplate('caixaAbrir');
+    }
+    
+    public function ver($id) {
+        $dados = array(
+            'caixa' => array(),
+            'caixa_itens' => array()
+        );
+        
+        $caixa = new Caixa();
+        $dados['caixa'] = $caixa->getCaixa($id);
+        $dados['caixa_itens'] = $caixa->getCaixaItem($dados['caixa']['id']);
+        
+        $this->loadTemplate('caixaVer', $dados);
     }
     
 }

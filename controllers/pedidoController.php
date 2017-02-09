@@ -98,9 +98,9 @@ class pedidoController extends controller {
                 
                 
                 $caixa = new Caixa();
-                $id_caixa = $caixa->getCaixa($dados['pedido']['dt_pedido']);
-                if (!empty($id_caixa)) {
-                    $id_caixa = $id_caixa['id'];
+                $c = $caixa->getCaixaData($dados['pedido']['dt_pedido']);
+                if (!empty($c)) {
+                    $id_caixa = $c['id'];
 
                     $pedido->finaliza($id_pedido);
 

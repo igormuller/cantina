@@ -5,7 +5,7 @@
             <div class="form-group">
                 <label class="control-label col-md-2">Data da Saída:</label>
                 <div class="col-md-5">
-                    <input type="text" class="form-control" name="dt_saida" id="data"  value="<?php echo $saida['dt_saida']; ?>" required />
+                    <input type="text" class="form-control" name="dt_saida" id="data"  value="<?php echo date('d/m/Y',strtotime($saida['dt_saida'])); ?>" required />
                 </div>
             </div>
             <div class="form-group">

@@ -31,6 +31,7 @@ class saidaController extends controller {
         $dados = array(
             'aviso' => ''
         );
+        date_default_timezone_set('America/Sao_Paulo');
         if (isset($_POST['dt_saida']) && !empty($_POST['dt_saida'])) {
             $dt_saida = new DateTime();
             $dt_saida = DateTime::createFromFormat("d/m/Y", $_POST['dt_saida']);
@@ -40,7 +41,7 @@ class saidaController extends controller {
             $responsavel = addslashes($_POST['responsavel']);
             
             $caixa = new Caixa();
-            $id_caixa = $caixa->getCaixa($dt_saida);
+            $id_caixa = $caixa->getCaixaData($dt_saida);
             if (!empty($id_caixa)) {
                 $id_caixa = $id_caixa['id'];
                 
@@ -71,7 +72,12 @@ class saidaController extends controller {
     public function excluir($id) {
         if (!empty($id)) {
             $saida = new Saida();
+            $s = $saida->getSaida($id);
             $saida->remover($id);
+                        
+            $caixa = new Caixa();
+            $c = $caixa->getCaixaData($s['dt_saida']);
+            $caixa->excluirCaixaItem($c['id'], '2', $s['id']);
         }
         header("Location: ".BASE_URL."/saida");
     }

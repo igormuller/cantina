@@ -2,14 +2,27 @@
 
 class Caixa extends model {
     
-    public function getCaixa($data) {
+    public function getCaixa($id) {
         $array = array();
         
-        $sql = "SELECT * FROM caixa WHERE dt_aberto = '$data'";
+        $sql = "SELECT * FROM caixa WHERE id = '$id'";
         $sql = $this->db->query($sql);
         
         if ($sql->rowCount() > 0) {
             $array = $sql->fetch();
+        }
+        
+        return $array;
+    }
+    
+    public function getCaixas() {
+        $array = array();
+        
+        $sql = "SELECT * FROM caixa";
+        $sql = $this->db->query($sql);
+        
+        if ($sql->rowCount() > 0) {
+            $array = $sql->fetchAll();
         }
         
         return $array;
@@ -25,6 +38,19 @@ class Caixa extends model {
         return FALSE;
     }
     
+    public function getCaixaData($data) {
+        $array = array();
+        
+        $sql = "SELECT * FROM caixa WHERE dt_aberto = '$data'";
+        $sql = $this->db->query($sql);
+        
+        if ($sql->rowCount() > 0) {
+            $array = $sql->fetch();
+        }
+        
+        return $array;
+    }
+    
     public function abrirCaixa($valor) {
         $sql = "INSERT INTO caixa SET valor_aberto = '$valor', dt_aberto = NOW()";
         $this->db->query($sql);        
@@ -38,9 +64,14 @@ class Caixa extends model {
     public function incluirCaixaItem($id_caixa, $tipo_item, $id_item) {
         $sql = "INSERT INTO caixa_item SET id_caixa = '$id_caixa', tipo_item = '$tipo_item', id_item = '$id_item'";
         $this->db->query($sql);
-        
     }
     
+    public function excluirCaixaItem($id_caixa, $tipo_item, $id_item) {
+        $sql = "DELETE FROM caixa_item WHERE id_caixa = '$id_caixa' AND tipo_item = '$tipo_item' AND id_item = '$id_item'";
+        $this->db->query($sql);
+    }
+
+
     public function getCaixaItem($id_caixa) {
         $array = array();
         $sql = "SELECT * FROM caixa_item WHERE id_caixa = '$id_caixa'";
